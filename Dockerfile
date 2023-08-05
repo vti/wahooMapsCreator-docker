@@ -22,4 +22,6 @@ RUN wget -q 'https://search.maven.org/remotecontent?filepath=org/mapsforge/mapsf
     && mkdir -p ~/.openstreetmap/osmosis/plugins \
     && mv mapsforge*jar  ~/.openstreetmap/osmosis/plugins
 
+RUN bash -c "pip install requests shapely"
 RUN bash -c "pip install wahoomc"
+RUN bash -c "ln -s /usr/bin/python3 /usr/bin/python"
