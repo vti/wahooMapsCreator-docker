@@ -19,16 +19,19 @@ RUN --mount=type=cache,target=/var/cache/apt \
     python3-gdal \
     zip \
     lzma
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
 # Install wahoomc
 RUN --mount=type=cache,target=/root/.cache/pip \
   pip install --break-system-packages \
     wahoomc
 
-# Install Auxiliary Tools
+# Set up runtime environment
+VOLUME "/app"
+VOLUME "/root/wahooMapsCreatorData"
+VOLUME "/root/.openstreetmap"
+WORKDIR "/app"
+
 RUN python3 -c "from wahoomc import main; main.run('init')"
 
-# Set up runtime environment
-RUN mkdir /app
-WORKDIR "/app"
 ENTRYPOINT ["python3", "-m", "wahoomc", "cli"]
