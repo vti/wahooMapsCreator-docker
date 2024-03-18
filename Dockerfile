@@ -1,27 +1,32 @@
-FROM ubuntu:latest
+ARG BASE_IMAGE=debian:12-slim
+FROM ${BASE_IMAGE}
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y update \
-    && apt-get install -qq -y --no-install-recommends \
-        wget \
-        default-jre \
-        osmium-tool \
-        osmosis \
-        python3 \
-        python3-geojson \
-        python3-pip \
-        python3-tk \
-        gdal-bin \
-        python3-gdal \
-        zip \
-        lzma \
-    && apt-get clean \
-    && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
+# Install System Dependencies
+RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
+  DEBIAN_FRONTEND=noninteractive apt-get -qq -y update && \
+  apt-get install -qq -y --no-install-recommends \
+  wget \
+  default-jre \
+  osmium-tool \
+  osmosis \
+  python3 \
+  python3-geojson \
+  python3-pip \
+  python3-requests \
+  python3-shapely \
+  python3-tk \
+  gdal-bin \
+  python3-gdal \
+  zip \
+  lzma
 
-RUN wget -q 'https://search.maven.org/remotecontent?filepath=org/mapsforge/mapsforge-map-writer/0.18.0/mapsforge-map-writer-0.18.0-jar-with-dependencies.jar' -O mapsforge-map-writer-0.18.0-jar-with-dependencies.jar \
-    && mkdir -p ~/.openstreetmap/osmosis/plugins \
-    && mv mapsforge*jar  ~/.openstreetmap/osmosis/plugins
+# Install wahoomc
+RUN --mount=type=cache,target=/root/.cache/pip \
+  pip install --break-system-packages \
+  wahoomc
 
-RUN bash -c "pip install requests shapely"
-RUN bash -c "pip install wahoomc"
-RUN bash -c "ln -s /usr/bin/python3 /usr/bin/python"
+# Install Auxiliary Tools
+RUN python3 -c "from wahoomc import main; main.run('init')"
+
+WORKDIR "/app"
+ENTRYPOINT ["python3", "-m", "wahoomc", "cli"]
