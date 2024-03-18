@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+ARGS=("${@}")
+MC_DATA_DIR="${DATA_DIR:-$PWD/data/wahooMapsCreatorData}"
+
+docker run --rm -it \
+	-v "${MC_DATA_DIR}:/root/wahooMapsCreatorData:Z" \
+	-v "${PWD}:/app:Z" \
+	wahoo-maps-creator \
+	"${ARGS[@]}"

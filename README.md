@@ -5,7 +5,7 @@ This is a Docker image for [wahooMapsCreator](https://github.com/treee111/wahooM
 1. Build the image
 
 ```bash
-$ bash build.sh
+$ ./build.sh
 ```
 
 Creates an image named wahoo-maps-creator with everything pre-installed.
@@ -14,14 +14,14 @@ Creates an image named wahoo-maps-creator with everything pre-installed.
 
 ```bash
 # Help
-$ bash wahoomc-cli.sh -h
+$ ./wahoomc-cli -h
 
 # Generate country
-$ bash wahoomc-cli.sh -co <country>
+$ ./wahoomc-cli -co <country>
 
 # e.g. with tags
-$ bash wahoomc-cli.sh -co <country> -tag tag-wahoo-poi.xml
+$ ./wahoomc-cli -co <country> -tag tag-wahoo-poi.xml
 ```
 
-All produced files are in `./data/wahooMapsCreatorData/` directory. Follow
+All produced files are in `$DATA_DIR` or `./data/wahooMapsCreatorData/` if not specified. Follow
 [wahooMapsCreator](https://github.com/treee111/wahooMapsCreator) instructions on how to upload it to your Wahoo.
