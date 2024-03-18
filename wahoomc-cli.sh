@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-ARGS="$@"
+set -euo pipefail
+IFS=$'\n\t'
+
+ARGS=("${@}")
 
 docker run --rm \
-    -v "$PWD/data/wahooMapsCreatorData:/root/wahooMapsCreatorData" \
-    -v "$PWD:/app" \
-    wahoo-maps-creator \
-    bash -c "cd /app \
-        && python3 -m wahoomc cli $ARGS"
+	-v "${PWD}/data/wahooMapsCreatorData:/root/wahooMapsCreatorData:Z" \
+	-v "${PWD}:/app:Z" \
+	wahoo-maps-creator \
+	"${ARGS[@]}"
