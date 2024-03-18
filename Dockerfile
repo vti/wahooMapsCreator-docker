@@ -27,11 +27,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     wahoomc
 
 # Set up runtime environment
-VOLUME "/app"
-VOLUME "/root/wahooMapsCreatorData"
-VOLUME "/root/.openstreetmap"
+RUN mkdir -p /app
 WORKDIR "/app"
-
 RUN python3 -c "from wahoomc import main; main.run('init')"
 
 ENTRYPOINT ["python3", "-m", "wahoomc", "cli"]

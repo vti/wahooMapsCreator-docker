@@ -6,6 +6,8 @@ IFS=$'\n\t'
 ARGS=("${@}")
 MC_DATA_DIR="${DATA_DIR:-$PWD/data/wahooMapsCreatorData}"
 
+mkdir -p "${MC_DATA_DIR}"
+
 docker run --rm -it \
 	-v "${MC_DATA_DIR}:/root/wahooMapsCreatorData:Z" \
 	-v "${PWD}:/app:Z" \
