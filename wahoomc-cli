@@ -11,5 +11,5 @@ mkdir -p "${MC_DATA_DIR}"
 docker run --rm -it \
 	-v "${MC_DATA_DIR}:/root/wahooMapsCreatorData:Z" \
 	-v "${PWD}:/app:Z" \
-	wahoo-maps-creator \
+	ghcr.io/zoenglinghou/wahoo-maps-creator:master \
 	"${ARGS[@]}"

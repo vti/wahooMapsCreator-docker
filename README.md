@@ -2,15 +2,7 @@
 
 This is a Docker image for [wahooMapsCreator](https://github.com/treee111/wahooMapsCreator)
 
-1. Build the image
-
-```bash
-$ ./build.sh
-```
-
-Creates an image named wahoo-maps-creator with everything pre-installed.
-
-2. Run the cli
+## Usage
 
 ```bash
 # Help
