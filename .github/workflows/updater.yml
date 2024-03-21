@@ -1,0 +1,19 @@
+name: Github Action Updater
+
+on:
+  schedule:
+    - cron: "38 14 1 * *" # Update monthly
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: GitHub Actions Version Updater
+        # You may pin to the exact commit or the version.
+        # uses: saadmk11/github-actions-version-updater@64be81ba69383f81f2be476703ea6570c4c8686e
+        uses: saadmk11/github-actions-version-updater@v0.8.1
+        with:
+          # GitHub Personal Access Token with `workflow` scope
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          
