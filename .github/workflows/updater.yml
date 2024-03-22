@@ -3,6 +3,7 @@ name: Github Action Updater
 on:
   schedule:
     - cron: "38 14 1 * *" # Update monthly
+  workflow_dispatch:
 
 jobs:
   update:
