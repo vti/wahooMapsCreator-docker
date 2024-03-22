@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # [Required] Access token with `workflow` scope.
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
       - name: GitHub Actions Version Updater
         # You may pin to the exact commit or the version.
         # uses: saadmk11/github-actions-version-updater@64be81ba69383f81f2be476703ea6570c4c8686e
