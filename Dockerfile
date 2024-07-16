@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y update \
     && apt-get install -qq -y --no-install-recommends \
