@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq -y update \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q 'https://search.maven.org/remotecontent?filepath=org/mapsforge/mapsforge-map-writer/0.18.0/mapsforge-map-writer-0.18.0-jar-with-dependencies.jar' -O mapsforge-map-writer-0.18.0-jar-with-dependencies.jar \
+RUN wget -q 'https://search.maven.org/remotecontent?filepath=org/mapsforge/mapsforge-map-writer/0.21.0/mapsforge-map-writer-0.21.0-jar-with-dependencies.jar' -O mapsforge-map-writer-0.21.0-jar-with-dependencies.jar \
     && mkdir -p ~/.openstreetmap/osmosis/plugins \
     && mv mapsforge*jar  ~/.openstreetmap/osmosis/plugins
 
