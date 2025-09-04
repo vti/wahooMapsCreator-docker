@@ -39,3 +39,5 @@ RUN bash -c "ln -s /usr/bin/python3 /usr/bin/python"
 
 # Contour lines
 RUN wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_2.23.orig.tar.gz && tar xzf phyghtmap_2.23.orig.tar.gz && cd phyghtmap-2.23 && python setup.py install
+
+RUN bash -c "echo JAVACMD_OPTIONS='-server -Xmx2G' > /root/.osmosis"
