@@ -24,7 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get -qq 
         python3-gdal \
         zip \
         git \
-        lzma \
+        xz-utils \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
